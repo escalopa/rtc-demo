@@ -7,12 +7,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCTCMmVzXT6ixTE9ghJXT93FuvSnTQiHPI",
-  authDomain: "rtc-demo-32c98.firebaseapp.com",
-  projectId: "rtc-demo-32c98",
-  storageBucket: "rtc-demo-32c98.appspot.com",
-  messagingSenderId: "738677547370",
-  appId: "1:738677547370:web:c00b3d0f1c68eec5d34513",
+  apiKey: process.env.APIKEY,
+  authDomain: process.env.AUTHDOMAIN,
+  projectId: process.env.PROJECTID,
+  storageBucket: process.env.STORAGEBUCKET,
+  messagingSenderId: process.env.MESSAGINGSENDERID,
+  appId: process.env.APPID,
 };
 
 if (!firebase.apps.length) {
@@ -46,11 +46,11 @@ const hangupButton = document.getElementById("hangupButton");
 // 1. Setup media sources
 
 webcamButton.onclick = async () => {
+  console.log("Hello world");
   localStream = await navigator.mediaDevices.getUserMedia({
     video: true,
     audio: true,
   });
-  console.log(localStream);
   remoteStream = new MediaStream();
 
   // Push tracks from local stream to peer connection
